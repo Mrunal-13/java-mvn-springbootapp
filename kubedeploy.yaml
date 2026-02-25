@@ -1,34 +1,34 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: vsw210-eta-deploy
+  name: mn-eta-deploy
   labels:
-    app: vsw210-eta-deploy-lbl
+    app: mn-eta-deploy-lbl
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: vsw210-eta-app
+      app: mn-eta-app
   template:
     metadata:
       labels:
-        app: vsw210-eta-app
+        app: mn-eta-app
     spec:
       containers:
-      - name: vsw210-eta-container
-        image: vsw210eta/sa-mywebapp:latest
+      - name: mn-eta-container
+        image: mrunalnimbalkr/sa-mywebapp:latest
         ports:
         - containerPort: 8080
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: vsw210-eta-np-service
+  name: mn-eta-np-service
   labels:
-    app: vsw210-eta-np-app
+    app: mn-eta-np-app
 spec:
   selector:
-    app: vsw210-eta-deploy-lbl
+    app: mn-eta-deploy-lbl
 
   type: NodePort
   ports:
